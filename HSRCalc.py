@@ -95,9 +95,15 @@ def cccalc(atk, spa, sfa, hm): #ult heal calculation(atk)
 #crit dmg advance
 def critcalc(critdmg, sp, sf):
     print()
-    x = round((critdmg*sp)+sf,1)
+    x = round((critdmg*sp)+sf,2)
     print('Crit Dmg buffed is: '+str(x))
     sparklecalculator()
+
+def critcalc2(critdmg, sp, sf):
+    print()
+    x = round((critdmg*sp)+sf,2)
+    print('Crit Dmg buffed is: '+str(x))
+
 
 #typecast
 def fc(x,y,z):
@@ -683,7 +689,7 @@ def calculator1():
                     print(choice404)
                     print()
                     atk = float(input(intak))
-                print('curent healing bonus is ' + str(hm))
+                print('current healing bonus is ' + str(hm))
                 print(intype)
                 print('lingshas heal scaling with her ult and summon is the same so it will be in the same category')
                 Stype = int(input('1.skill 2.ult+talent(summon): '))
@@ -1068,6 +1074,7 @@ def sparklecalculator():
     print('1. Bronya')
     print('2. Sparkle')
     print('3. Sunday')
+    print('4. Remembrance MC')
     print()
     char = input('Input Number: ')
     if char == '':
@@ -1242,7 +1249,8 @@ def sparklecalculator():
         else:
             print(skill404)
             sparklecalculator()
-
+    elif char == '4':
+        RMC()
     else:
         print('Input a valid number')
         sparklecalculator()
@@ -1275,8 +1283,62 @@ def setup_rich_presence():
         print(f"An unexpected error occurred: {e}")
     return None
 
-# Example: Initialize and keep the presence active
-
+#Crit Dmg buff Calculator Character Specific functions
+def RMC():
+    print()
+    critdmg = str(input(intcdmg))
+    if critdmg == '':
+        sparklecalculator()
+    else:
+        critdmg = float(critdmg)
+    print()
+    print("(RMC's Crit increase comes from Mem)")
+    sk = int(input('Input Memosprite Talent Level: '))
+    if sk == 1:
+        sp = 0.06
+        sf = 12
+        critcalc(critdmg, sp, sf)
+    elif sk == 2:
+        sp = 0.072
+        sf = 14.4
+        critcalc(critdmg, sp, sf)
+    elif sk == 3:
+        sp = 0.084
+        sf = 16.8
+        critcalc(critdmg, sp, sf)
+    elif sk == 4:
+        sp = 0.096
+        sf = 19.2
+        critcalc(critdmg, sp, sf)
+    elif sk == 5:
+        sp = 0.108
+        sf = 21.6
+        critcalc(critdmg, sp, sf)
+    elif sk == 6:
+        sp = 0.12
+        sf = 24
+        critcalc2(critdmg, sp, sf)
+        RMC()
+    elif sk == 7:
+        sp = 0.132
+        sf = 26.4
+        critcalc2(critdmg, sp, sf)
+        RMC()
+    elif sk == 8:
+        sp = 0.144
+        sf = 28.8
+        critcalc(critdmg, sp, sf)
+    elif sk == 9:
+        sp = 0.156
+        sf = 31.2
+        critcalc(critdmg, sp, sf)
+    elif sk == 10:
+        sp = 0.168
+        sf = 33.6
+        critcalc(critdmg, sp, sf)
+    else:
+        print(skill404)
+        RMC()
 
 
 
